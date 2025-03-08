@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Sectors</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <ul style="float: right;">
+        <li class="dropdown">
+          <!-- Fixed href to '#' for the dropdown button -->
+          <a href="#" class="dropbtn" onclick="toggleNavDropdown('nav-dropdown')">Menu ▼</a>
+          <div id="nav-dropdown" class="dropdown-content">
+            <a href="{{ url_for('auth.quiz_page', question=1) }}">Start Quiz</a>
+            {% if session.get('quiz_complete') %}
+              <a href="{{ url_for('auth.quiz_results') }}">Results</a>
+            {% else %}
+              <a href="javascript:void(0)" onclick="alert('Complete the quiz to view results!')">Results (Complete quiz to unlock)</a>
+            {% endif %}
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Job Sectors -->
+  <main class="job-sectors">
+    <h1>Job Sectors</h1>
+    {% for sector in job_sectors %}
+    <div class="job-sector">
+      <button class="accordion" onclick="toggleDropdown('sector-{{ sector.id }}')">
+        {{ sector.sector }} ▼
+      </button>
+      <div id="sector-{{ sector.id }}" class="job-details">
+        <p><strong>Job Title:</strong> {{ sector.job_title }}</p>
+        <p><strong>Average Salary:</strong> ${{ sector.average_salary }}</p>
+        <p><strong>Summary:</strong> {{ sector.summary }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </main>
+
+  <footer>
+    <p>&copy; 2025 My Flask App</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Quiz: Question {{ question_number }}</h1>
+
+    <!-- Display the current question -->
+    <p>{{ question.question }}</p>
+
+    <!-- Quiz form -->
+    <form method="POST">
+        <!-- Display option A -->
+        <input type="radio" id="response_a" name="answer" value="a" required>
+        <label for="response_a">{{ question.response_a }}</label><br>
+
+        <!-- Display option B -->
+        <input type="radio" id="response_b" name="answer" value="b">
+        <label for="response_b">{{ question.response_b }}</label><br>
+
+        <!-- Submit button to go to the next question -->
+        <button type="submit">Submit Answer</button>
+    </form>
+
+    <!-- Link to next question (if needed) -->
+    
+</body>
+</html>

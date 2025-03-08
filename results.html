@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Results</title>
+</head>
+<body>
+    <h1>Top 3 Job Sector Matches</h1>
+
+    {% if top_3_jobs %}
+        <ul>
+            {% for job in top_3_jobs %}
+                <li>
+                    <h2>{{ job.sector }}</h2>
+                    <p><strong>Job Title:</strong> {{ job.job_title }}</p>
+                    <p><strong>Average Salary:</strong> £{{ job.average_salary }}</p>
+                    <p><strong>Summary:</strong> {{ job.summary }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results yet. Please complete the quiz first to see your results.</p>
+    {% endif %}
+
+    <form action="{{ url_for('home.homes') }}">
+        <button type="submit">Back to Home</button>
+    </form>
+</body>
+</html>
+
